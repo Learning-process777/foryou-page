@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fun Prank Page</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+    #formSection { margin: 20px; }
+    #videoSection { display: none; }
+  </style>
+</head>
+<body>
+  <h2>Welcome! Please answer a few questions...</h2>
+  
+  <div id="formSection">
+    <p>Type your nickname:</p>
+    <input type="text" id="nickname"><br><br>
+    
+    <p>Select your gender:</p>
+    <select id="gender">
+      <option value="">--Choose--</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+      <option value="other">Other</option>
+    </select><br><br>
+    
+    <p>Are you over 10 years old?</p>
+    <button onclick="setAge(true)">Yes</button>
+    <button onclick="setAge(false)">No</button><br><br>
+    
+    <p>Make sure your volume is FULL!</p>
+    <button onclick="showVideo()">Continue</button>
+  </div>
+  
+  <div id="videoSection">
+    <h3>Here’s your surprise video!</h3>
+    <video id="prankVideo" width="400" controls autoplay>
+      <source src="yourvideo.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  
+  <script>
+    let ageConfirmed = null;
+    function setAge(over10) {
+      ageConfirmed = over10;
+      alert("Age response saved!");
+    }
+    function showVideo() {
+      if (!document.getElementById("nickname").value) {
+        alert("Please enter your nickname!");
+        return;
+      }
+      if (!document.getElementById("gender").value) {
+        alert("Please select your gender!");
+        return;
+      }
+      if (ageConfirmed === null) {
+        alert("Please answer the age question!");
+        return;
+      }
+      document.getElementById("formSection").style.display = "none";
+      document.getElementById("videoSection").style.display = "block";
+      document.getElementById("prankVideo").play();
+    }
+  </script>
+</body>
+</html>
